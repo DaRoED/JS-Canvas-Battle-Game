@@ -47,13 +47,9 @@ window.addEventListener("keydown", (event) => {
 			break;
 		case "d":
 			if (
-				player.AttackAnimation1.isPlay &&
+				!player.WalkAnimation.isPlay &&
 				!player.AttackAnimation1.isPlay
 			) {
-				return player.WalkAnimation.stop();
-			}
-
-			if (!player.WalkAnimation.isPlay) {
 				player.IdleAnimation.stop();
 				player.WalkAnimation.play();
 			}
@@ -61,13 +57,13 @@ window.addEventListener("keydown", (event) => {
 		case "ArrowLeft":
 			if (!enemy.WalkAnimation.isPlay && !enemy.AttackAnimation1.isPlay) {
 				enemy.IdleAnimation.stop();
-				enemy.WalkAnimation.play();
+				enemy.WalkAnimation.play(enemy.WalkAnimation.isPlay);
 			}
 			break;
 		case "ArrowRight":
 			if (!enemy.WalkAnimation.isPlay && !enemy.AttackAnimation1.isPlay) {
 				enemy.IdleAnimation.stop();
-				enemy.WalkAnimation.play();
+				enemy.WalkAnimation.play(enemy.WalkAnimation.isPlay);
 			}
 			break;
 	}

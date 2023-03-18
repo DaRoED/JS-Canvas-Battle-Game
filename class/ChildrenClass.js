@@ -12,6 +12,20 @@ class Player extends Sprit {
 				pressed: false,
 			},
 		};
+		this.AttackAnimationOffset1 = {
+			Left: [
+				[0, 0],
+				[0, 0],
+				[-40, 0],
+				[-40, 0],
+			],
+			Right: [
+				[0, 0],
+				[0, 0],
+				[0, 0],
+				[0, 0],
+			],
+		};
 
 		this.IdleAnimation = AnimationBuilder.Builder()
 			.setName("Idle")
@@ -35,7 +49,9 @@ class Player extends Sprit {
 			.setName("Attack1")
 			.setIsOnce(true)
 			.setUnitType(this)
-			.setCallback(() => this.WalkAnimation.play())
+			.setCallback((isWalking) =>
+				isWalking ? this.WalkAnimation.play() : false
+			)
 			.setAnimationOffset(this.AttackAnimationOffset1)
 			.setAnimationImages(
 				this.getAnimationImages(
@@ -62,7 +78,7 @@ class Player extends Sprit {
 
 	attack() {
 		if (this.checkAttack() && !this.attackCool) {
-			this.AttackAnimation1.play();
+			this.AttackAnimation1.play(this.WalkAnimation.isPlay);
 			this.IdleAnimation.stop();
 			this.WalkAnimation.stop();
 			enemy.status.HP -= this.status.AT;
@@ -96,6 +112,20 @@ class Enemy extends Sprit {
 				pressed: false,
 			},
 		};
+		this.AttackAnimationOffset1 = {
+			Left: [
+				[0, 0],
+				[0, 0],
+				[-40, 0],
+				[-40, 0],
+			],
+			Right: [
+				[0, 0],
+				[0, 0],
+				[0, 0],
+				[0, 0],
+			],
+		};
 
 		this.IdleAnimation = AnimationBuilder.Builder()
 			.setName("Idle")
@@ -119,7 +149,9 @@ class Enemy extends Sprit {
 			.setName("Attack1")
 			.setIsOnce(true)
 			.setUnitType(this)
-			.setCallback(() => this.WalkAnimation.play())
+			.setCallback((isWalking) =>
+				isWalking ? this.WalkAnimation.play() : false
+			)
 			.setAnimationOffset(this.AttackAnimationOffset1)
 			.setAnimationImages(
 				this.getAnimationImages(
@@ -149,7 +181,7 @@ class Enemy extends Sprit {
 
 	attack() {
 		if (this.checkAttack() && !this.attackCool) {
-			this.AttackAnimation1.play();
+			this.AttackAnimation1.play(this.WalkAnimation.isPlay);
 			this.IdleAnimation.stop();
 			this.WalkAnimation.stop();
 			player.status.HP -= this.status.AT;

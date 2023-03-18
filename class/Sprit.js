@@ -16,20 +16,6 @@ class Sprit {
 			width: 70,
 			height: 25,
 		};
-		this.AttackAnimationOffset1 = {
-			Left: [
-				[0, 0],
-				[0, 0],
-				[-40, 0],
-				[-40, 0],
-			],
-			Right: [
-				[0, 0],
-				[0, 0],
-				[0, 0],
-				[0, 0],
-			],
-		};
 
 		this.jumpKey = false;
 		this.jumpCount = 0;

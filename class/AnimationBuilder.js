@@ -24,7 +24,7 @@ class AnimationBuilder {
 		this.#maxAnimationCount = build.maxAnimationCount;
 	}
 
-	play() {
+	play(arg) {
 		if (this.#intervalId) this.stop();
 
 		this.#intervalId = setInterval(() => {
@@ -32,7 +32,7 @@ class AnimationBuilder {
 			if (this.#animationCount > this.#maxAnimationCount) {
 				this.#animationCount = 0;
 				if (this.#isOnce) this.stop();
-				if (this.#callback) this.#callback();
+				if (this.#callback) this.#callback(arg);
 			}
 		}, this.#animateTime);
 
